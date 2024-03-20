@@ -1,0 +1,47 @@
+
+---
+
+
+services:
+  wordpress:
+    image: wordpress
+    restart: always
+    ports: 
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: rahul
+      WORDPRESS_DB_PASSWORD: admin
+      WORDPRESS_DB_NAME: wpdb
+    volumes:
+      - wordpress:/var/www/html
+   
+  db:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_USER: rahul
+      MYSQL_PASSWORD: admin
+      MYSQL_DATABASE: wpdb
+      MYSQL_ROOT_PASSWORD: admin
+    volumes:
+      - db:/var/lib/mysql
+   
+  phpmyadmin:
+    image: phpmyadmin
+    links: 
+      - db:db
+    ports: 
+      - "8282:80"
+    environment:
+      MYSQL_USER: rahul
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: admin
+volumes:
+  wordpress:
+  db: 
+    
+
+
+
