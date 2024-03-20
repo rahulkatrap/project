@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-dep
+  labels: 
+   app: sql
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+    app: sql
+ template:
+   metadata:
+     labels:
+       app: sql
+   spec:
+      containers:
+        - name: sql-dep
+          image: mysql:latest
+          env:
+             - name: MUSQL_USER
+               value: rahul
+             - name: MYSQL_PASSWORD
+               value: admin
+             - name: MYSQL_DATABASE
+               value: wpdb
+             - name: MYSQL_ROOT_PASSWORD
+               value: admin 
+          ports: 
+            - containerPort: 3306
+
