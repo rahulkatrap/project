@@ -28,4 +28,10 @@ spec:
                value: admin 
           ports: 
             - containerPort: 3306
-
+          volumeMounts:
+            - name: sqldata
+              mountPath: /tmp/hostpath
+      volumes:
+        - name: sqldata
+          hostPath:
+            path: /tmp/data        

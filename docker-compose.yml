@@ -28,16 +28,11 @@ services:
     volumes:
       - db:/var/lib/mysql
    
-  phpmyadmin:
-    image: phpmyadmin
-    links: 
-      - db:db
+  php:
+    image: php:7.2-apache
     ports: 
       - "8282:80"
-    environment:
-      MYSQL_USER: rahul
-      MYSQL_PASSWORD: admin
-      MYSQL_ROOT_PASSWORD: admin
+    
 volumes:
   wordpress:
   db: 

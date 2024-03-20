@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deplphp
+  labels:
+    app: php
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php
+  template:
+    metadata:
+      labels:
+        app: php
+    spec: 
+      containers:
+        - name: php
+          image: php:7.2-apache    
+          env: 
+           - name: PHP_DB_HOST
+             value: "db" 
+          ports:
+           - containerPort: 80
+
+
